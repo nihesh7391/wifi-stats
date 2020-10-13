@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from os import path, remove
+from os import mkdir, path, remove
 import numpy as np
 import pandas as pd
 import subprocess 
@@ -47,6 +47,9 @@ def run_for_day(file_name, total_minutes):
         time.sleep(60.0 - ((time.time() - tick_start) % 60.0))        
 
     df.to_csv(file_name, index=False)
+
+if not path.isdir('Records/'):
+    mkdir('Records')
 
 while True: 
     ref_time = datetime.now().replace(microsecond=0)
