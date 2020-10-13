@@ -22,7 +22,7 @@ def run_for_day(file_name, total_minutes):
         if WIFI_NAME in subprocess.check_output("iwgetid").decode("utf-8"):
             condition_1 = True
 
-            url = "https://raw.githubusercontent.com/nihesh7391/wifi_stats/master/remote_file.txt"
+            url = "https://raw.githubusercontent.com/nihesh7391/wifi_stats/master/local_file.txt"
             try:
                 urllib.request.urlretrieve(url, 'remote_file.txt')
                 condition_2 = path.exists('remote_file.txt')
