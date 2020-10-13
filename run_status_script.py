@@ -6,7 +6,7 @@ import subprocess
 import time
 import urllib.request
 
-WIFI_NAME = "ABCD" 
+WIFI_NAME = "PeaceKeeper" 
 
 def run_for_day(file_name, total_minutes):
     df = pd.DataFrame(columns=['Timestamp', 'Status'])
@@ -27,7 +27,7 @@ def run_for_day(file_name, total_minutes):
                 urllib.request.urlretrieve(url, 'remote_file.txt')
                 condition_2 = path.exists('remote_file.txt')
             except:
-                continue
+                pass
 
         if (condition_1 and condition_2): 
             remote_file = open('remote_file.txt', 'r')
@@ -35,10 +35,12 @@ def run_for_day(file_name, total_minutes):
             if (line1==line2):
                 cur_time = datetime.now()
                 new_row = {'Timestamp': str(cur_time.hour)+':'+str(cur_time.minute), 'Status': '1'}
+                print (WIFI_NAME, new_row)
                 df = df.append(new_row, ignore_index=True)
         else:
             cur_time = datetime.now()
             new_row = {'Timestamp': str(cur_time.hour)+':'+str(cur_time.minute), 'Status': '0'}
+            print (WIFI_NAME, new_row)
             df = df.append(new_row, ignore_index=True)
         
         if condition_2:
